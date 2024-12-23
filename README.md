@@ -23,12 +23,12 @@ FROM  ruby:3.3.6-slim
 
 5. Remove git folder
 ```
-rm .git
+rm -rf .git
 ```
 
 6. Now install new rails app
 ```
-docker-compose run app rails new . --name rails-new --force --database=mysql --skip-bundle --skip-docker
+docker-compose run --name rails-new app rails new . --force --database=mysql --skip-bundle --skip-docker
 ```
 
 7. Build the docker image
@@ -40,7 +40,7 @@ docker-compose build
 ```
 default: &default
   adapter: mysql2
-  encoding: utf8
+  encoding: utf8mb4
   pool: 5
   username: root
   password: "root"
@@ -48,11 +48,11 @@ default: &default
 
 development:
   <<: *default
-  database: dev
+  database: development
 
 test:
   <<: *default
-  database: dev
+  database: development
 ```
 
 9. Run
