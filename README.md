@@ -28,7 +28,7 @@ rm .git
 
 6. Now install new rails app
 ```
-docker-compose run app rails new . --force --database=mysql --skip-bundle --skip-docker
+docker-compose run app rails new . --name rails-new --force --database=mysql --skip-bundle --skip-docker
 ```
 
 7. Build the docker image
