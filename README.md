@@ -14,38 +14,25 @@ git clone https://philippullmann@dev.azure.com/philippullmann/RailsDockerTemplat
 cd your_project_name
 ```
 
-3. Update rails version on the Gemfile
-
-```
-source 'https://rubygems.org'
-gem 'rails', '8.0.1'
-```
-
-4. Update Ruby version on Dockerfile
-
-```
-FROM  ruby:3.3.6-slim
-```
-
-5. Remove git folder
+3. Remove git folder
 
 ```
 rm -rf .git
 ```
 
-6. Now install new rails app
+4. Now install new rails app
 
 ```
-docker-compose run --name rails-new app rails new . --force --database=mysql --skip-bundle --skip-docker
+docker-compose run --name rails-new web rails new . --force --database=mysql --skip-bundle --skip-docker --skip-test --skip-jbuilder
 ```
 
-7. Build the docker image
+5. Build the docker image
 
 ```
 docker-compose build
 ```
 
-8. Update database details on config/database.yml file
+6. Update database details on config/database.yml file
 
 ```
 default: &default
@@ -53,7 +40,6 @@ default: &default
   encoding: utf8mb4
   pool: 5
   username: root
-  password: "root"
   host: mysql
 
 development:
@@ -62,16 +48,16 @@ development:
 
 test:
   <<: *default
-  database: development
+  database: test
 ```
 
-9. Run
+7. Run
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
-10. Browse http://localhost:3000
+8. Browse http://localhost:3000
 
 ## Visual Studio
 
@@ -82,7 +68,7 @@ docker-compose up
 * endwise
 * Ruby on Rails
 
-Configuration file: *C:\Users\phili\AppData\Roaming\Code\User\settings.json*:
+Configuration file: *.vscode\settings.json*:
 
 ```
 {
@@ -90,11 +76,9 @@ Configuration file: *C:\Users\phili\AppData\Roaming\Code\User\settings.json*:
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
     "github.gitProtocol": "ssh",
-    "rubyLsp.rubyVersionManager": {
-        "identifier": "custom"
-    },
-    "rubyLsp.customRubyCommand": "docker compose exec -T app ruby",
-    "ruby.rubocop.executePath": "docker-compose exec -T app ./bin/rubocop",
+    "ruby.rubocop.executePath": "docker-compose exec -T web ./bin/rubocop",
+    "ruby.rubocop.configFilePath": "C:/Users/phili/Development/EasyFinance/.rubocop.yml",
+    "ruby.rubocop.onSave": true,
     "[ruby]": {
         "editor.defaultFormatter": "misogi.ruby-rubocop"
     }
