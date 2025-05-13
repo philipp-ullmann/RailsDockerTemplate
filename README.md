@@ -5,7 +5,7 @@
 1. First clone the project
 
 ```
-git clone https://philippullmann@dev.azure.com/philippullmann/RailsDockerTemplate/_git/RailsDockerTemplate your_project_name
+git clone git@github.com:philipp-ullmann/RailsDockerTemplate.git your_project_name
 ```
 
 2. Change directory
