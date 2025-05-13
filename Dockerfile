@@ -8,6 +8,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     git \
     telnet \
     nodejs \
+    libyaml-dev \
     vim \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
