@@ -1,4 +1,4 @@
-FROM ruby:3.4.1-slim
+FROM ruby:3.4.3-slim
 ENV LANG C.UTF-8
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \

@@ -77,7 +77,7 @@ Configuration file: *.vscode\settings.json*:
     "git.confirmSync": false,
     "github.gitProtocol": "ssh",
     "ruby.rubocop.executePath": "docker-compose exec -T web ./bin/rubocop",
-    "ruby.rubocop.configFilePath": "C:/Users/phili/Development/EasyFinance/.rubocop.yml",
+    "ruby.rubocop.configFilePath": "C:/Path/.rubocop.yml",
     "ruby.rubocop.onSave": true,
     "[ruby]": {
         "editor.defaultFormatter": "misogi.ruby-rubocop"
