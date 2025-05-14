@@ -38,9 +38,10 @@ docker-compose build
 default: &default
   adapter: mysql2
   encoding: utf8mb4
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  host: mysql
+  password:
+  host: <%= ENV.fetch("DB_HOST") { 'mysql' } %>
 
 development:
   <<: *default
@@ -66,21 +67,3 @@ docker-compose up -d
 * Ruby LSP
 * ruby-rubocop
 * endwise
-* Ruby on Rails
-
-Configuration file: *.vscode\settings.json*:
-
-```
-{
-    "workbench.colorTheme": "Solarized Light+",
-    "git.enableSmartCommit": true,
-    "git.confirmSync": false,
-    "github.gitProtocol": "ssh",
-    "ruby.rubocop.executePath": "docker-compose exec -T web ./bin/rubocop",
-    "ruby.rubocop.configFilePath": "C:/Path/.rubocop.yml",
-    "ruby.rubocop.onSave": true,
-    "[ruby]": {
-        "editor.defaultFormatter": "misogi.ruby-rubocop"
-    }
-}
-```
