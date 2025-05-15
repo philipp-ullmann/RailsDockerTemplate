@@ -3,10 +3,6 @@
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
     "github.gitProtocol": "ssh",
-    "ruby.rubocop.executePath": "docker-compose exec -T web ./bin/rubocop",
-    "ruby.rubocop.configFilePath": "../.rubocop.yml",
-    "ruby.rubocop.onSave": true,
-    "[ruby]": {
-        "editor.defaultFormatter": "misogi.ruby-rubocop"
-    }
+    "rubyLsp.customRubyCommand": "",
+    "rubyLsp.rubyExecutablePath": "docker-compose exec -T web ruby"
 }

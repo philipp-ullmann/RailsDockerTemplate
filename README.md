@@ -65,5 +65,4 @@ docker-compose up -d
 ### Extensions
 
 * Ruby LSP
-* ruby-rubocop
 * endwise
