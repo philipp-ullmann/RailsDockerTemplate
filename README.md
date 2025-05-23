@@ -65,5 +65,13 @@ docker-compose up -d
 ### Extensions
 
 * Ruby LSP
+* VSCode rdbg Ruby Debugger
 * ruby-rubocop
 * endwise
+
+## Windows setup
+
+1. Install ruby version [3.4.4](https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.4-2/rubyinstaller-devkit-3.4.4-2-x64.exe)
+1. *gem install rubocop*
+1. *gem install debug*
+1. *gem install fiddle*

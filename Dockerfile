@@ -1,4 +1,4 @@
-FROM ruby:3.4.3-slim
+FROM ruby:3.4.4-slim
 ENV LANG C.UTF-8
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
@@ -9,6 +9,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     telnet \
     nodejs \
     libyaml-dev \
+    libffi-dev \
     vim \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
