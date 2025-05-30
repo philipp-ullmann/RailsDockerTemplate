@@ -23,7 +23,7 @@ rm -rf .git
 4. Now install new rails app
 
 ```
-docker-compose run --name rails-new web rails new . --force --database=mysql --skip-bundle --skip-docker --skip-test --skip-jbuilder
+docker-compose run --name rails-new web rails new . --force --database=postgresql --skip-bundle --skip-docker --skip-test --skip-jbuilder
 ```
 
 5. Build the docker image
@@ -36,12 +36,12 @@ docker-compose build
 
 ```
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV.fetch("DB_USERNAME") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "secret" } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: <%= ENV.fetch("DB_HOST") { 'mysql' } %>
+  host: <%= ENV.fetch("DB_HOST") { "db" } %>
 
 development:
   <<: *default
@@ -50,6 +50,25 @@ development:
 test:
   <<: *default
   database: test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: production
+    username: workspace
+    password: <%= ENV["WORKSPACE_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: production_cable
+    migrations_paths: db/cable_migrate
 ```
 
 7. Run
@@ -59,6 +78,20 @@ docker-compose up -d
 ```
 
 8. Browse http://localhost:3000
+
+## Development
+
+* Connect to web instance
+
+```
+docker-compose exec web bash
+```
+
+* Connect to postgresql database
+
+```
+docker-compose exec db psql -U postgres development
+```
 
 ## Visual Studio
 

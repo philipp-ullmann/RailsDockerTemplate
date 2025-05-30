@@ -1,18 +1,19 @@
 services:
-  mysql:
-    image: mysql:8.4.5
+  db:
+    image: postgres:17.5
     ports:
-      - 3306:3306
+      - 5432:5432
     volumes_from:
       - dbdata
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
-      MYSQL_DATABASE: development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: development
 
   dbdata:
     image: tianon/true
     volumes:
-      - /var/lib/mysql
+      - /var/lib/postgresql/data
 
   web:
     build: .
@@ -29,7 +30,7 @@ services:
     volumes_from:
       - webdata
     depends_on:
-      - mysql
+      - db
       - chrome
 
   webdata:

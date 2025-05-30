@@ -11,9 +11,12 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     libyaml-dev \
     libffi-dev \
     vim \
+    postgresql \
+    postgresql-contrib \
+    libpq-dev \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev
+RUN apt-get update -qq
 
 ENV APP_ROOT /workspace
 RUN mkdir -p $APP_ROOT
